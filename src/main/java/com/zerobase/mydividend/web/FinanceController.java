@@ -1,5 +1,6 @@
 package com.zerobase.mydividend.web;
 
+import com.zerobase.mydividend.model.ScrapedResult;
 import com.zerobase.mydividend.service.FinanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/finance")
 public class FinanceController {
 
-    private FinanceService financeService;
+    private final FinanceService financeService;
 
     @GetMapping("/dividend/{companyName}")
     public ResponseEntity<?> searchFinance(@PathVariable String companyName) {
-        return null;
+        ScrapedResult scrapedResult = financeService.getDividendByCompanyName(companyName);
+
+        return ResponseEntity.ok(scrapedResult);
     }
 
 }

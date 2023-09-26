@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 public class NoSuchCompanyException extends AbstractException {
     @Override
     public int getStatusCode() {
-        return HttpStatus.NOT_FOUND.value();
+        return HttpStatus.BAD_REQUEST.value();
     }
 
     @Override
