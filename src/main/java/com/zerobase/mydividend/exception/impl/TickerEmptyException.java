@@ -11,6 +11,6 @@ public class TickerEmptyException extends AbstractException {
 
     @Override
     public String getMessage() {
-        return "ticker가 없습니다.";
+        return "해당 ticker가 없습니다.";
     }
 }

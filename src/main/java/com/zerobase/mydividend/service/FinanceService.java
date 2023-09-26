@@ -4,11 +4,13 @@ import com.zerobase.mydividend.exception.impl.NoSuchCompanyException;
 import com.zerobase.mydividend.model.Company;
 import com.zerobase.mydividend.model.Dividend;
 import com.zerobase.mydividend.model.ScrapedResult;
+import com.zerobase.mydividend.model.constants.CacheKey;
 import com.zerobase.mydividend.persist.CompanyRepository;
 import com.zerobase.mydividend.persist.DividendRepository;
 import com.zerobase.mydividend.persist.entity.CompanyEntity;
 import com.zerobase.mydividend.persist.entity.DividendEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class FinanceService {
     private final DividendRepository dividendRepository;
     private final CompanyRepository companyRepository;
 
+    @Cacheable(key = "#companyName", value = CacheKey.KEY_FINANCE)
     public ScrapedResult getDividendByCompanyName(String companyName) {
         // 회사명을 기준으로 회사 정보를 조회
         CompanyEntity company = companyRepository.findByName(companyName)

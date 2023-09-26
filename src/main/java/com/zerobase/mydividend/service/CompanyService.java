@@ -12,6 +12,7 @@ import com.zerobase.mydividend.scraper.YahooFinanceScraper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +60,14 @@ public class CompanyService {
 
         return company;
     }
+
+    public List<String> getCompanyNamesByPrefix(String prefix) {
+        Pageable limit = PageRequest.of(0, 10);
+        Page<CompanyEntity> companyEntities = companyRepository.findByNameStartingWithIgnoreCase(prefix, limit);
+
+        return companyEntities.stream().map(CompanyEntity::getName).collect(Collectors.toList());
+    }
+
 
 
 }

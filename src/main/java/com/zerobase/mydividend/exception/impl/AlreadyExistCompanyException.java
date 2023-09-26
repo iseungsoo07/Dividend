@@ -6,11 +6,11 @@ import org.springframework.http.HttpStatus;
 public class AlreadyExistCompanyException extends AbstractException {
     @Override
     public int getStatusCode() {
-        return HttpStatus.CONFLICT.value();
+        return HttpStatus.BAD_REQUEST.value();
     }
 
     @Override
     public String getMessage() {
-        return "이미 존재하는 회사입니다.";
+        return "이미 보유하고 있는 회사 정보 입니다.";
     }
 }

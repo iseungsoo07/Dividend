@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/company")
@@ -18,7 +20,9 @@ public class CompanyController {
 
     @GetMapping("/autocomplete")
     public ResponseEntity<?> autocomplete(@RequestParam String prefix) {
-        return null;
+        List<String> companyNames = companyService.getCompanyNamesByPrefix(prefix);
+
+        return ResponseEntity.ok(companyNames);
     }
 
     @GetMapping

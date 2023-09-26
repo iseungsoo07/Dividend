@@ -1,6 +1,8 @@
 package com.zerobase.mydividend.persist;
 
 import com.zerobase.mydividend.persist.entity.CompanyEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,7 @@ public interface CompanyRepository extends JpaRepository<CompanyEntity, Long> {
     boolean existsByTicker(String ticker);
 
     Optional<CompanyEntity> findByName(String companyName);
+
+    Page<CompanyEntity> findByNameStartingWithIgnoreCase(String prefix, Pageable limit);
 }
 
