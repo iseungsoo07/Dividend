@@ -68,6 +68,13 @@ public class CompanyService {
         return companyEntities.stream().map(CompanyEntity::getName).collect(Collectors.toList());
     }
 
+    public String deleteCompany(String ticker) {
+        CompanyEntity companyEntity = companyRepository.findByTicker(ticker)
+                .orElseThrow(NoSuchCompanyException::new);
 
+        dividendRepository.deleteAllByCompanyId(companyEntity.getId());
+        companyRepository.delete(companyEntity);
 
+        return companyEntity.getName();
+    }
 }
