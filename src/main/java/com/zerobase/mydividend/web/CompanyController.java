@@ -4,11 +4,10 @@ import com.zerobase.mydividend.exception.impl.TickerEmptyException;
 import com.zerobase.mydividend.model.Company;
 import com.zerobase.mydividend.service.CompanyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.print.Pageable;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class CompanyController {
 
     @GetMapping
     public ResponseEntity<?> searchCompany(final Pageable pageable) {
-        return null;
+        return ResponseEntity.ok(companyService.getAllCompany(pageable));
     }
 
     @PostMapping

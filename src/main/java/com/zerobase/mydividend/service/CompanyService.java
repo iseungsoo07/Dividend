@@ -11,6 +11,8 @@ import com.zerobase.mydividend.persist.entity.DividendEntity;
 import com.zerobase.mydividend.scraper.YahooFinanceScraper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,10 @@ public class CompanyService {
         }
 
         return storeCompanyAndDividend(ticker);
+    }
+
+    public Page<CompanyEntity> getAllCompany(Pageable pageable) {
+        return companyRepository.findAll(pageable);
     }
 
     private Company storeCompanyAndDividend(String ticker) {
