@@ -47,6 +47,7 @@ public class ScrapScheduler {
 
                         if (!exists) {
                             dividendRepository.save(dividendEntity);
+                            log.info("새로운 배당금 정보가 추가되었습니다 -> {}", dividendEntity.toString());
                         }
                     });
 

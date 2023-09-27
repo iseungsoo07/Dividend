@@ -5,6 +5,7 @@ import com.zerobase.mydividend.model.Company;
 import com.zerobase.mydividend.model.constants.CacheKey;
 import com.zerobase.mydividend.service.CompanyService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/company")
+@Slf4j
 public class CompanyController {
 
     private final CompanyService companyService;

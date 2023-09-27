@@ -5,6 +5,7 @@ import com.zerobase.mydividend.model.Company;
 import com.zerobase.mydividend.model.Dividend;
 import com.zerobase.mydividend.model.ScrapedResult;
 import com.zerobase.mydividend.model.constants.Month;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 public class YahooFinanceScraper implements Scraper {
 
     private static final String STATISTICS_URL = "https://finance.yahoo.com/quote/%s/history?period1=%d&period2=%d&interval=1mo";
@@ -27,6 +29,7 @@ public class YahooFinanceScraper implements Scraper {
 
     @Override
     public Company scrapCompanyByTicker(String ticker) {
+        log.info("{} 회사 정보 스크래핑 시작", ticker);
         String url = String.format(SUMMARY_URL, ticker, ticker);
 
         try {
@@ -55,6 +58,7 @@ public class YahooFinanceScraper implements Scraper {
 
     @Override
     public ScrapedResult scrap(Company company) {
+        log.info("{} 회사의 배당금 정보 스크래핑 시작", company.getName());
         ScrapedResult scrapedResult = new ScrapedResult();
         scrapedResult.setCompany(company);
 
